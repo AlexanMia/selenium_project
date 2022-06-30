@@ -1,4 +1,7 @@
-class GlobalMeaning:
+class Constants:
+    link_1 = "https://jdi-testing.github.io/jdi-light/index.html"
+    PAGE_TITLE = 'Home Page'
+
     user_name = 'Roman'
     password = 'Jdi1234'
     NAME_USER = 'ROMAN IOVLEV'
@@ -23,10 +26,10 @@ class GlobalMeaning:
 
     LINK = 'https://github.com/epam/JDI'
 
-    NUMBERS_OF_CHECKBOXES = 4
-    NUMBERS_OF_RADIOS = 4
-    NUMBERS_OF_DROP_DOWN = 1
-    NUMBERS_OF_BUTTONS = 2
+    EXPECTED_NUMBERS_OF_CHECKBOXES = 4
+    EXPECTED_NUMBERS_OF_RADIOS = 4
+    EXPECTED_NUMBERS_OF_DROP_DOWN = 1
+    EXPECTED_NUMBERS_OF_BUTTONS = 2
 
     SELEN = 'Selen'
     WATER = 'Water'

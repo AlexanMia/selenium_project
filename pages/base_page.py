@@ -1,11 +1,4 @@
 # base_page.py - тут мы храним методы которые применяются по всему проекту вообще, всё завернуто в класс, чтобы было удобно импортировать
-from selenium.webdriver.common.by import By
-
-from .locators import BasePageLocators, BasketPageLocators, GlobalMeaning, DifferentElements, MetalsColors
-
-import time
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -17,30 +10,26 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
-    def should_be_definite_title(self):
+    def get_page_title(self):
         return self.browser.title
 
     def element_click(self, locator):
-        return self.find_element_1(locator).click()
+        return self.find_need_element(locator).click()
 
-    def find_element_1(self, locator):
+    def find_need_element(self, locator):
         return self.browser.find_element(*locator)
-
-
-    def search_element_m(self, locator):
-        return self.find_element_1(locator)
 
     def find_elements_all(self, locator):
         return self.browser.find_elements(*locator)
 
     def is_element_selected(self, locator):
-        return self.find_element_1(locator).is_selected()
+        return self.find_need_element(locator).is_selected()
 
     def enter_value_into_box(self, locator, meaning):
-        return self.find_element_1(locator).send_keys(meaning)
+        return self.find_need_element(locator).send_keys(meaning)
 
     def get_elements_text(self, locator):
-        return self.find_element_1(locator).text
+        return self.find_need_element(locator).text
 
     # написать метод где сравнение с -1
     def is_text_found(self, locator, text):

@@ -31,7 +31,6 @@ class BasePage:
     def get_elements_text(self, locator):
         return self.find_need_element(locator).text
 
-    # написать метод где сравнение с -1
     def is_text_found(self, locator, text):
         return self.get_elements_text(locator).find(text) != -1
 

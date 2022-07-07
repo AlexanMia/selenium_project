@@ -11,7 +11,7 @@ class TestBase:
 
     def open_page(self):
         global page
-        page.open()  # открываем страницу
+        page.open()
 
     def check_title(self):
         global page
@@ -29,4 +29,3 @@ class TestBase:
         global page
         assert page.get_elements_text(MainPage.NAME_USER) == Constants.NAME_USER, \
             f"User's name is not {Constants.NAME_USER}"
-

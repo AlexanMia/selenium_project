@@ -1,6 +1,3 @@
-# base_page.py - тут мы храним методы которые применяются по всему проекту вообще, всё завернуто в класс, чтобы было удобно импортировать
-
-
 class BasePage:
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
@@ -33,58 +30,3 @@ class BasePage:
 
     def is_text_found(self, locator, text):
         return self.get_elements_text(locator).find(text) != -1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

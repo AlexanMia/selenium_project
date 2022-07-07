@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from util.constants import Constants
 
 
-class Locators:
+class MainPage:
     LOGIN = (By.CSS_SELECTOR, "#user-icon")
     LOG = (By.CSS_SELECTOR, "#name")
     PASSWORD = (By.CSS_SELECTOR, "#password")
@@ -15,10 +15,10 @@ class Locators:
     service = (By.CLASS_NAME, "dropdown-toggle")
     metalscolours = (By.XPATH, '//a[text()="Metals & Colors"]')
 
-    IMAGE_1 = (By.CLASS_NAME, "icon-practise")
-    IMAGE_2 = (By.CLASS_NAME, "icon-custom")
-    IMAGE_3 = (By.CLASS_NAME, "icon-multi")
-    IMAGE_4 = (By.CLASS_NAME, "icon-base")
+    IMAGE_PRACTISE = (By.CLASS_NAME, "icon-practise")
+    IMAGE_CUSTOM = (By.CLASS_NAME, "icon-custom")
+    IMAGE_MULTI = (By.CLASS_NAME, "icon-multi")
+    IMAGE_BASE = (By.CLASS_NAME, "icon-base")
 
     TEXT_INCLUDE = (By.CLASS_NAME, "benefit-txt")
     TEXTS_PATTERN = '//span[@class="benefit-txt" and contains(text(),"{}")]'
@@ -26,8 +26,8 @@ class Locators:
     TEXT_MULTIPLATFORM = (By.XPATH, TEXTS_PATTERN.format("multiplatform"))
     TEXT_ALREADY = (By.XPATH, TEXTS_PATTERN.format("Already"))
 
-    TEXT_of_the_MAIN_PAGE_1 = (By.CLASS_NAME, "main-title")
-    TEXT_of_the_MAIN_PAGE_2 = (By.CLASS_NAME, "main-txt")
+    TEXT_OF_THE_MAIN_PAGE_TITLE = (By.CLASS_NAME, "main-title")
+    TEXT_OF_THE_MAIN_PAGE_TXT = (By.CLASS_NAME, "main-txt")
 
     TEXT_OF_SUB = (By.XPATH, '//a[@ui="link" and contains(text(),"JDI")]')
 
@@ -60,8 +60,8 @@ class DifferentElements:
     CHECKBOXES = (By.CLASS_NAME, "label-checkbox")
     RADIOS = (By.CLASS_NAME, "label-radio")
     DROP_DOWN = (By.XPATH, '//select[@class="uui-form-element"]')
-    BUTTON_1 = (By.XPATH, '//button[@class="uui-button" and contains(text(),"Default")]')
-    BUTTON_2 = (By.XPATH, '//input[@class="uui-button"]')
+    BUTTON_DEFAULT = (By.XPATH, '//button[@class="uui-button" and contains(text(),"Default")]')
+    BUTTON_UII = (By.XPATH, '//input[@class="uui-button"]')
 
     RIGHT_SECTION = (By.CSS_SELECTOR, "#mCSB_2")
     LEFT_SECTION = (By.CSS_SELECTOR, "#mCSB_1")
@@ -79,7 +79,7 @@ class DifferentElements:
 
 
 class MetalsColors:
-    metalscolours = (By.XPATH, '//span[contains(text(),"Metals & Colors")]')
+    METALSCOLORS = (By.XPATH, '//span[contains(text(),"Metals & Colors")]')
     RADIO_5 = (By.XPATH, f'//p[@class="radio"]//label[text()={Constants.NUMBER_5}]')
     SELECTED_RADIO_5 = (By.XPATH, '//p[@class="radio"]//input[@id="p3"]')
 

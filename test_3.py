@@ -1,42 +1,27 @@
 import pytest
 from selenium.webdriver.common.by import By
-from util.locators import Locators, MetalsColors
+from .test_base import TestBase
+from util.locators import MetalsColors
 from util.constants import Constants
-from .pages.base_page import BasePage
 
 
-class Test3:
-    def test_open_test_site(self, browser):
-        # POINT 1
+class Test3(TestBase):
+    def test_open_site_with_proper_title(self, browser):
+        # POINT 1-2
         global page
-        page = BasePage(browser, Constants.link_1)  # инициализируем Page Object,
-        # передаем в конструктор экземпляр драйвера и url адрес
-        page.open()  # открываем страницу
+        page = super().init_page(browser)
+        super().open_page()
+        super().check_title()
 
-    def test_proper_title(self):
-        # POINT 2
-        global page
-        assert page.get_page_title() == Constants.PAGE_TITLE, f"Title is not {Constants.PAGE_TITLE}"
-
-    def test_logging(self, browser):
-        # POINT 3
-        # LOG IN
-        global page
-        page.element_click(Locators.LOGIN)
-        page.enter_value_into_box(Locators.LOG, Constants.user_name)
-        page.enter_value_into_box(Locators.PASSWORD, Constants.password)
-        page.element_click(Locators.BUTTON_ENTER)
-
-    def test_proper_name_user(self, browser):
-        # POINT 4
-        global page
-        assert page.get_elements_text(Locators.NAME_USER) == Constants.NAME_USER, \
-                f"User's name is not {Constants.NAME_USER}"
+    def test_log_in_with_proper_user(self, browser):
+        # POINT 3, 4
+        super().get_to_log_in(browser)
+        super().check_proper_user()
 
     def test_going_to_metals_colors(self):
         # POINT 5
         global page
-        page.element_click(MetalsColors.metalscolours)
+        page.element_click(MetalsColors.METALSCOLORS)
 
     @pytest.mark.parametrize('loc_radiobutton,loc_logs,global_meaning', [
         (MetalsColors.RADIO_5, MetalsColors.LOGS, Constants.NUMBER_5),
@@ -47,9 +32,9 @@ class Test3:
         global page
         page.element_click(loc_radiobutton)
         assert page.find_need_element(loc_logs), "Log is not presented"
-        assert page.get_elements_text(loc_logs).find(global_meaning), f"Number {global_meaning} is not found in the log"
+        assert page.is_text_found(loc_logs, global_meaning), f"Number {global_meaning} is not found in the log"
         odd_even = "Even" if int(global_meaning) % 2 == 0 else "Odd"
-        assert page.get_elements_text(loc_logs).find(odd_even), f"Number is not {odd_even}"
+        assert page.is_text_found(loc_logs, odd_even), f"Number is not {odd_even}"
 
     def test_summary_result_in_logs(self):
         # POINT 8
@@ -120,8 +105,6 @@ class Test3:
             assert page.find_need_element((By.XPATH, MetalsColors.LOG_ROW.format(count))).text.find(i) != -1, \
                 f"Element {i} is not expected"
             count += 1
-
-
 
 
 

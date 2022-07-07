@@ -6,7 +6,7 @@ from util.constants import Constants
 
 class Test2(TestBase):
     def test_open_site_with_proper_title(self, browser):
-        # POINT 1-2
+        # POINT 1, 2
         global page
         page = super().init_page(browser)
         super().open_page()
@@ -14,7 +14,7 @@ class Test2(TestBase):
 
     def test_log_in_with_proper_user(self, browser):
         # POINT 3, 4
-        super().get_to_log_in(browser)
+        super().get_to_log_in()
         super().check_proper_user()
 
     def test_is_elements_service_exist(self):
@@ -79,7 +79,7 @@ class Test2(TestBase):
         (DifferentElements.CHECKBOX_WIND, DifferentElements.LOGS, Constants.WIND)
     ])
     def test_selecting_checkboxes_have_logs_and_select(self, loc_checkbox, loc_logs, global_meaning):
-        # POINT 11 b 12
+        # POINT 11, 12
         global page
         page.element_click(loc_checkbox)
         assert page.find_need_element(loc_logs), 'Log is not presented'
@@ -88,7 +88,7 @@ class Test2(TestBase):
 
 
     def test_selecting_radios_have_logs_and_select(self):
-        # POINT 13 и 14
+        # POINT 13, 14
         global page
         page.element_click(DifferentElements.RADIO_SELEN)
         assert page.is_element_selected(DifferentElements.RADIO_SELEN), 'Radio does not be chosen'
@@ -96,7 +96,7 @@ class Test2(TestBase):
         assert page.is_text_found(DifferentElements.LOGS, Constants.SELEN), 'Text is not expected'
 
     def test_selecting_dropdown_have_logs_and_select(self):
-        # POINT 15 и 16
+        # POINT 15, 16
         global page
         page.element_click(DifferentElements.DROP_DOWN_YELLOW)
         assert page.is_element_selected(DifferentElements.DROP_DOWN_YELLOW), f'Drop down {Constants.YELLOW} does not be chosen'
@@ -108,7 +108,7 @@ class Test2(TestBase):
         (DifferentElements.CHECKBOX_WIND, DifferentElements.LOGS, Constants.WIND)
     ])
     def test_unselect_checkboxes_have_logs_and_unselect(self, loc_checkbox, loc_logs, loc_global_meaning):
-        # POINT 17 и 18
+        # POINT 17, 18
         global page
         page.element_click(loc_checkbox)
         assert not page.is_element_selected(loc_checkbox), 'Checkbox is chosen'

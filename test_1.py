@@ -5,7 +5,7 @@ from .util.constants import Constants
 
 class Test1(TestBase):
     def test_open_site_with_proper_title(self, browser):
-        # POINT 1-2
+        # POINT 1, 2
         global page
         page = super().init_page(browser)
         super().open_page()
@@ -13,7 +13,7 @@ class Test1(TestBase):
 
     def test_log_in_with_proper_user(self, browser):
         # POINT 3, 4
-        super().get_to_log_in(browser)
+        super().get_to_log_in()
         super().check_proper_user()
 
     def test_proper_title(self, browser):

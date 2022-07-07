@@ -1,47 +1,32 @@
 import pytest
-from util.locators import Locators, DifferentElements
+from .test_base import TestBase
+from util.locators import MainPage, DifferentElements
 from util.constants import Constants
-from .pages.base_page import BasePage
 
 
-class Test2:
-    def test_open_test_site(self, browser):
-        # POINT 1
+class Test2(TestBase):
+    def test_open_site_with_proper_title(self, browser):
+        # POINT 1-2
         global page
-        page = BasePage(browser, Constants.link_1)  # инициализируем Page Object,
-        # передаем в конструктор экземпляр драйвера и url адрес
-        page.open()  # открываем страницу
+        page = super().init_page(browser)
+        super().open_page()
+        super().check_title()
 
-    def test_proper_title(self, browser):
-        # POINT 2
-        global page
-        assert page.get_page_title() == Constants.PAGE_TITLE, f"Title is not {Constants.PAGE_TITLE}"
-
-    def test_logging(self, browser):
-        # POINT 3
-        # LOG IN
-        global page
-        page.element_click(Locators.LOGIN)
-        page.enter_value_into_box(Locators.LOG, Constants.user_name)
-        page.enter_value_into_box(Locators.PASSWORD, Constants.password)
-        page.element_click(Locators.BUTTON_ENTER)
-
-    def test_proper_name_user(self, browser):
-        # POINT 4
-        global page
-        assert page.get_elements_text(Locators.NAME_USER) == Constants.NAME_USER, \
-            f"User's name is not {Constants.NAME_USER}"
+    def test_log_in_with_proper_user(self, browser):
+        # POINT 3, 4
+        super().get_to_log_in(browser)
+        super().check_proper_user()
 
     def test_is_elements_service_exist(self):
         # POINT 5
         global page
-        page.element_click(Locators.service)
-        service_items = [page.find_need_element(Locators.SUPPORT_UNDER_SERVICE),
-                         page.find_need_element(Locators.DATES_UNDER_SERVICE),
-                         page.find_need_element(Locators.COMPLEX_TABLE_UNDER_SERVICE),
-                         page.find_need_element(Locators.SIMPLE_TABLE_UNDER_SERVICE),
-                         page.find_need_element(Locators.TABLE_WITH_PAGES_UNDER_SERVICE),
-                         page.find_need_element(Locators.DIFFERENT_ELEMENTS_UNDER_SERVICE)
+        page.element_click(MainPage.service)
+        service_items = [page.find_need_element(MainPage.SUPPORT_UNDER_SERVICE),
+                         page.find_need_element(MainPage.DATES_UNDER_SERVICE),
+                         page.find_need_element(MainPage.COMPLEX_TABLE_UNDER_SERVICE),
+                         page.find_need_element(MainPage.SIMPLE_TABLE_UNDER_SERVICE),
+                         page.find_need_element(MainPage.TABLE_WITH_PAGES_UNDER_SERVICE),
+                         page.find_need_element(MainPage.DIFFERENT_ELEMENTS_UNDER_SERVICE)
                          ]
         for i in service_items:
             assert i, 'Option is not existed'
@@ -49,13 +34,13 @@ class Test2:
     def test_is_elements_left_section_exist(self):
         # POINT 6
         global page
-        page.element_click(Locators.SERVICE_ON_THE_LEFT)
-        service_items_on_the_left = [page.find_need_element(Locators.SUPPORT_SERVICE_ON_THE_LEFT),
-                                     page.find_need_element(Locators.DATES_SERVICE_ON_THE_LEFT),
-                                     page.find_need_element(Locators.COMPLEX_TABLE_SERVICE_ON_THE_LEFT),
-                                     page.find_need_element(Locators.SIMPLE_TABLE_SERVICE_ON_THE_LEFT),
-                                     page.find_need_element(Locators.TABLE_WITH_PAGES_SERVICE_ON_THE_LEFT),
-                                     page.find_need_element(Locators.DIFFERENT_ELEMENTS_SERVICE_ON_THE_LEFT)
+        page.element_click(MainPage.SERVICE_ON_THE_LEFT)
+        service_items_on_the_left = [page.find_need_element(MainPage.SUPPORT_SERVICE_ON_THE_LEFT),
+                                     page.find_need_element(MainPage.DATES_SERVICE_ON_THE_LEFT),
+                                     page.find_need_element(MainPage.COMPLEX_TABLE_SERVICE_ON_THE_LEFT),
+                                     page.find_need_element(MainPage.SIMPLE_TABLE_SERVICE_ON_THE_LEFT),
+                                     page.find_need_element(MainPage.TABLE_WITH_PAGES_SERVICE_ON_THE_LEFT),
+                                     page.find_need_element(MainPage.DIFFERENT_ELEMENTS_SERVICE_ON_THE_LEFT)
                                      ]
 
         for i in service_items_on_the_left:
@@ -64,8 +49,8 @@ class Test2:
     def test_open_different_elements_page(self):
         # POINT 7
         global page
-        page.element_click(Locators.service)
-        page.element_click(Locators.DIFFERENT_ELEMENTS_UNDER_SERVICE)
+        page.element_click(MainPage.service)
+        page.element_click(MainPage.DIFFERENT_ELEMENTS_UNDER_SERVICE)
 
     def test_are_all_elements_exist(self):
         # POINT 8
@@ -73,8 +58,8 @@ class Test2:
         needed_elements = {Constants.EXPECTED_NUMBERS_OF_CHECKBOXES: page.find_elements_all(DifferentElements.CHECKBOXES),
                            Constants.EXPECTED_NUMBERS_OF_RADIOS: page.find_elements_all(DifferentElements.RADIOS),
                            Constants.EXPECTED_NUMBERS_OF_DROP_DOWN: page.find_elements_all(DifferentElements.DROP_DOWN),
-                           Constants.EXPECTED_NUMBERS_OF_BUTTONS: [page.find_elements_all(DifferentElements.BUTTON_1),
-                                                                   page.find_elements_all(DifferentElements.BUTTON_2)]}
+                           Constants.EXPECTED_NUMBERS_OF_BUTTONS: [page.find_elements_all(DifferentElements.BUTTON_DEFAULT),
+                                                                   page.find_elements_all(DifferentElements.BUTTON_UII)]}
 
         for i, j in needed_elements.items():
             assert i == int(len(j)), 'Not all elements exist'

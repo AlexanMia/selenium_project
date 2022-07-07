@@ -7,7 +7,7 @@ from util.constants import Constants
 
 class Test3(TestBase):
     def test_open_site_with_proper_title(self, browser):
-        # POINT 1-2
+        # POINT 1, 2
         global page
         page = super().init_page(browser)
         super().open_page()
@@ -15,7 +15,7 @@ class Test3(TestBase):
 
     def test_log_in_with_proper_user(self, browser):
         # POINT 3, 4
-        super().get_to_log_in(browser)
+        super().get_to_log_in()
         super().check_proper_user()
 
     def test_going_to_metals_colors(self):
@@ -48,7 +48,7 @@ class Test3(TestBase):
         (MetalsColors.CHECKBOX_WIND, MetalsColors.SELECTED_CHECKBOX_WIND, MetalsColors.LOGS, Constants.WIND)
     ])
     def test_select_checkboxes_have_logs_and_values(self, loc_checkbox, loc_selected_checkbox, loc_logs, global_meaning):
-        # POINT 9-10
+        # POINT 9, 10
         global page
         page.element_click(loc_checkbox)
         assert page.is_element_selected(loc_selected_checkbox), 'Checkbox do not be chosen'
@@ -57,7 +57,7 @@ class Test3(TestBase):
                page.is_text_found(loc_logs, 'true'), "Text is not expected"
 
     def test_select_dropdown_colors_have_logs_and_values(self):
-        # POINT 11-12
+        # POINT 11, 12
         global page
         page.element_click(MetalsColors.DROP_DOWN_BUTTON_COLORS)
         page.element_click(MetalsColors.DROP_DOWN_YELLOW)
@@ -66,7 +66,7 @@ class Test3(TestBase):
         assert page.is_text_found(MetalsColors.LOGS, Constants.YELLOW), "Text is not expected"
 
     def test_select_dropdown_metals_have_logs_and_values(self):
-        # POINT 13-14
+        # POINT 13, 14
         global page
         page.element_click(MetalsColors.DROP_DOWN_BUTTON_METALS)
         page.element_click(MetalsColors.DROP_DOWN_GOLD)
